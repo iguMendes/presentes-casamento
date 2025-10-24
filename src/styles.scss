@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+html,
+body {
+    background-image: url('/assets/TELA1.png');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}

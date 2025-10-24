@@ -3,10 +3,12 @@ import { BrowserModule, provideClientHydration, withEventReplay } from '@angular
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
+import { TelaPrincipal } from './telas/tela-principal';
 
 @NgModule({
   declarations: [
-    App
+    App,
+    TelaPrincipal
   ],
   imports: [
     BrowserModule,
@@ -16,6 +18,6 @@ import { App } from './app';
     provideBrowserGlobalErrorListeners(),
     provideClientHydration(withEventReplay())
   ],
-  bootstrap: [App]
+  bootstrap: [TelaPrincipal]
 })
 export class AppModule { }
