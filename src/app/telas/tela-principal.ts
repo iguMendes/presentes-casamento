@@ -4,10 +4,12 @@ import { Component } from '@angular/core';
   selector: 'app-tela-principal',
   standalone: false,
   templateUrl: './tela-principal.html',
-  styleUrls: ['./tela-principal.scss'],
+  styleUrls: ['./tela-principal.scss']
 })
 export class TelaPrincipal {
+  nome = 'Igor e Isabela';
 
-  nome: string = 'Igor e Isabela';
-
+ public presentear() {
+   
+  }
 }
