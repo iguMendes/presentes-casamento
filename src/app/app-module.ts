@@ -1,21 +1,11 @@
-import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing-module';
-import { App } from './app';
+import { TelaPrincipal } from './telas/tela-principal';
 
 @NgModule({
-  declarations: [
-    App
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideClientHydration(withEventReplay())
-  ],
-  bootstrap: [App]
+  declarations: [TelaPrincipal],
+  imports: [BrowserModule],
+  bootstrap: [TelaPrincipal]
 })
 export class AppModule { }
