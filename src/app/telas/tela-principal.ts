@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tela-principal',
-  standalone: false,
   templateUrl: './tela-principal.html',
+  standalone: false,
   styleUrls: ['./tela-principal.scss']
 })
 export class TelaPrincipal {
   nome = 'Igor e Isabela';
 
- public presentear() {
-   
+  constructor(private router: Router) {}
+
+  public presentear() {
+    this.router.navigate(['/cadastro']);
   }
 }

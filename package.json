@@ -2,12 +2,12 @@
   "name": "presentes-casamento",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:presentes-casamento": "node dist/presentes-casamento/server/server.mjs"
+  "ng": "ng",
+  "start": "npx http-server ./src -p 4200",
+  "build": "echo \"No build step for static version\"",
+  "watch": "echo \"No watch for static version\"",
+  "test": "echo \"No tests configured for static version\"",
+  "serve:ssr:presentes-casamento": "node dist/presentes-casamento/server/server.mjs"
   },
   "prettier": {
     "printWidth": 100,
