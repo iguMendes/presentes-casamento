@@ -1,4 +1,4 @@
-import { PRODUCT_LINKS } from "./productLinks.js";
+import { PRODUCT_LINKS } from "./src/productLinks.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCs9LdN3M8Ey8ta5BroO9uL71CstOk2Mso",
