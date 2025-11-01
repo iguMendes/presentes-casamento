@@ -1,12 +1,483 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
   <title>PresentesCasamento</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 </head>
+
 <body>
-  <app-tela-principal></app-tela-principal>
+
+  <main id="mainView">
+    <!-- Tela Principal (mantive o HTML original adaptando para JS simples) -->
+    <div class="bloco-nome">Igor e Isabela</div>
+    <div class="subtitulo">Presentes</div>
+    <div class="cha">Chá de Casa Nova</div>
+
+    <!-- BLOCO 1 -->
+    <div class="presentes-grid">
+      <div class="container-presente" id="presente1">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-lsrj27nfdx5wd4.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Conjunto de Assadeiras Antiaderente Retangular</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente2">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://down-br.img.susercontent.com/file/sg-11134201-7rbld-m5ob3oqrzbko07.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Kit 5 Potes de Vidro com Tampa Inox hermético</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente3">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://down-br.img.susercontent.com/file/sg-11134201-824hw-mfjq4y5t69sd31.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Kit com 3 Potes Quadrados Collection 1,2L</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente4">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://down-br.img.susercontent.com/file/sg-11134201-821ds-mggij4403gul34.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Kit com 3 Potes Quadrados Collection 2,2L</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente5">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://http2.mlstatic.com/D_NQ_NP_928936-MLA96151857031_102025-OO.jpg"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Garrafa Térmica de Café 500ml Tramontina</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+    </div>
+
+    <!-- BLOCO 2 -->
+    <div class="presentes-grid">
+      <div class="container-presente" id="presente6">
+        <div class="img-presente">
+          <img class="img-tamanho"
+            src="https://m.magazineluiza.com.br/a-static/420x420/panela-de-pressao-fechamento-externo-45l-preto-nacional-aluminio-nacional/nacionalutilidadesdomesticas/15911644576/27264403546bc0ef3a5ef26614b458d2.jpeg"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Panela De Pressão</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente7">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-lxcuiv38apvaa2.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Jogo Xícaras Café Cerâmica 120ml</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente8">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://down-br.img.susercontent.com/file/sg-11134201-7ra1x-m4jppdexmsmoe6.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Kit 3 Formas com Fundo Removível Antiaderente</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente9">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://down-br.img.susercontent.com/file/sg-11134201-7qvdx-lfk0d109nxkx0c.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">3 Assadeiras Travessas de Vidro Retangular</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente10">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://down-br.img.susercontent.com/file/sg-11134201-7rdvl-lyr314o758xg95.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Kit Jogo 6 Bowls Wolff de Cristal Tigelas</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+    </div>
+
+    <!-- BLOCO 3 -->
+    <div class="presentes-grid">
+      <div class="container-presente" id="presente11">
+        <div class="img-presente">
+          <img class="img-tamanho"
+            src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-m8f6qjqjavapa8@resize_w450_nl.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Bandeja Retangular De Bambu</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente12">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://down-br.img.susercontent.com/file/sg-11134201-7rdx7-lz9k8p73v0dm29.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Cesto Organizador Multiuso</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente13">
+        <div class="img-presente">
+          <img class="img-tamanho"
+            src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-mdbkt3arbitd01@resize_w450_nl.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Cesto Caixa Multiuso com Abertura</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente14">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://m.media-amazon.com/images/I/51oCjdy5sJL._AC_SY300_SX300_QL70_ML2_.jpg"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Mixer Misturador Multiuso</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente15">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-mb1j68zfmpdldf.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Organizador Disco Algodão E Cotonetes</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+    </div>
+
+    <!-- BLOCO 4 -->
+    <div class="presentes-grid">
+      <div class="container-presente" id="presente16">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://down-br.img.susercontent.com/file/br-11134207-7qukw-lgyk6038rgza7a.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Kit 3 Peneira Coador De Peneiras</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente17">
+        <div class="img-presente">
+          <img class="img-tamanho"
+            src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-md50y4eaticy4b@resize_w450_nl.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Fruteira de Mesa Rustica</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente18">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://down-br.img.susercontent.com/file/br-11134207-7qukw-lfr099vi00ue5d.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">KIT 2 Moedor De Sal e Pimenta Inox</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente19">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://m.media-amazon.com/images/I/616KpA994OL._AC_SL1000_.jpg"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Sanduicheira</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente20">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://down-br.img.susercontent.com/file/br-11134211-81z1k-me83rr86rn5ub6.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Kit 5 Tigela Para Salada De Aço Inoxidável</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+    </div>
+
+    <!-- BLOCO 5 -->
+    <div class="presentes-grid">
+      <div class="container-presente" id="presente21">
+        <div class="img-presente">
+          <img class="img-tamanho"
+            src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-ma08xw71ne9uf2@resize_w450_nl.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Kit 2 Galheteiro Vidro</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente22">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-lsyq45brou9nd3.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Conjunto de 3 Tigelas Marinex Vidro com Tampa</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente23">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://down-br.img.susercontent.com/file/sg-11134201-7rfh7-m9aoja90gpt525.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Porta Sabonete Liquido e Porta Objetos</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente24">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://m.media-amazon.com/images/I/61YKpZXThwL._AC_SY679_.jpg"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Elgin Vaporizador Vertical De Mão</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente25">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://m.media-amazon.com/images/I/41QniS6pVmL._AC_SY300_SX300_QL70_ML2_.jpg"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Cafeteira Elétrica Electrolux 127v</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+    </div>
+
+    <!-- BLOCO 6 -->
+    <div class="presentes-grid">
+      <div class="container-presente" id="presente26">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-m5mzbrytuapef9.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Conjunto Colher Xicaras Medidoras Com 8 Peças</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente27">
+        <div class="img-presente">
+          <img class="img-tamanho"
+            src="https://down-br.img.susercontent.com/file/br-11134207-7qukw-lh6n9fyop7lide@resize_w450_nl.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Kit Cozinha Pegador Salada</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente28">
+        <div class="img-presente">
+          <img class="img-tamanho"
+            src="https://down-br.img.susercontent.com/file/sg-11134201-7rdwg-mbu5fkosqrf287@resize_w450_nl.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Jarra Medidora 500ml</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente29">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://down-br.img.susercontent.com/file/sg-11134201-824il-meewi2idarr93f.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">GARRAFA ÁGUA SUCO LEITE</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente30">
+        <div class="img-presente">
+          <img class="img-tamanho"
+            src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-mdn95r9mokhl45@resize_w450_nl.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Kit 4 Peças Dispenser Flow 1,5 E 2,3</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+    </div>
+
+    <!-- BLOCO 7 -->
+    <div class="presentes-grid">
+      <div class="container-presente" id="presente31">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-m9sj66xpinluee.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Kit 4 Jogo Americano Preto</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente32">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://m.media-amazon.com/images/I/912-0XnKf-L._AC_SY450_.jpg"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Conjunto de Frigideiras Antiaderente Tramontina</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente33">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://http2.mlstatic.com/D_NQ_NP_876521-MLA94804411428_102025-OO.jpg"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Assadeiras Jogo 6 Assadeiras de Vidro Marinex</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+      <!--corrigidos-->
+      <div class="container-presente" id="presente34">
+        <div class="img-presente">
+          <img class="img-tamanho"
+            src="https://m.magazineluiza.com.br/a-static/420x420/chaleira-brinox-inox-com-apito-preto-marble-27l-roma/magazineluiza/237575300/acc44ef1dad5974bb0f7c049eeef4bfd.jpg"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Chaleira Brinox Inox com Apito Preto Marble 2,7L</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente35">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://m.media-amazon.com/images/I/313Tf7kb6TL._AC_US100_.jpg"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Aspirador pó vertical</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+    </div>
+
+
+    <div class="presentes-grid">
+      <div class="container-presente" id="presente36">
+        <div class="img-presente">
+          <img class="img-tamanho"
+            src="https://down-br.img.susercontent.com/file/sg-11134201-7rdyj-ly0w0fckjdxo10@resize_w450_nl.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Organizador de Geladeira Ou Clear Fresh 2 Peças</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente37">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://http2.mlstatic.com/D_Q_NP_715899-MLA96109903269_102025-L.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Multiprocessador Oster 127v</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente38">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://http2.mlstatic.com/D_Q_NP_666904-MLA96139671827_102025-L.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Batedeira Planetária Bowl Inox</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente39">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-mcpk4vwwagxe5d.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Conjunto 6 Bowls 350ml</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente40">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://down-br.img.susercontent.com/file/sg-11134201-7rep5-m8albsph5dwp4d.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Kit 12 Pote Temperos Vidro Inox</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+    </div>
+
+    <div class="presentes-grid">
+      <div class="container-presente" id="presente41">
+        <div class="img-presente">
+          <img class="img-tamanho"
+            src="https://http2.mlstatic.com/D_NQ_NP_641993-MLB83065048430_032025-OO-kit-4-organizador-guarda-roupa-cesto-multiuso-dobravel-caixa.jpg"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Kit 4 Organizador Guarda Roupa</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente42">
+        <div class="img-presente">
+          <img class="img-tamanho" src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-mb2dpvifi2z364.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Kit de Tapete Bolinha 04 Unidades</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente43">
+        <div class="img-presente">
+          <img class="img-tamanho"
+            src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-lu9okdeu4ql068@resize_w450_nl.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Suporte De Mesa Porta Papel Toalha</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente44">
+        <div class="img-presente">
+          <img class="img-tamanho"
+            src="https://down-br.img.susercontent.com/file/br-11134207-81z1k-mgcxtoshyltwc2@resize_w450_nl.webp"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Kit Porta frios pote hermético com tampa</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="container-presente" id="presente45">
+        <div class="img-presente">
+          <img class="img-tamanho"
+            src="https://http2.mlstatic.com/D_NQ_NP_695994-MLB78914875587_092024-OO-boleira-bambu-com-tampa-acrilico-porta-bolo-torta-pudim-28cm.jpg"
+            alt="Presente de casamento">
+        </div>
+        <div class="texto-presente">Kit 12 Pote Temperos Vidro Inox</div>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+    </div>
+  </main>
+
+  <section id="cadastroView">
+    <div class="container-cadastro">
+      <h2>Informe quem está presenteando</h2>
+      <form class="form-cadastro">
+        <input type="text" name="nome" placeholder="Nome" required>
+        <input type="text" name="sobrenome" placeholder="Sobrenome" required>
+        <input type="text" name="telefone" placeholder="Telefone" required>
+        <a class="link-produto" href="">Clique aqui para o link do Produto</a>
+        <button type="submit">Presentear com este item</button>
+      </form>
+    </div>
+  </section>
+
+  <script type="module" src="./app.js"></script>
 </body>
+
 </html>

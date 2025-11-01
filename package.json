@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "start": "npx http-server ./src -p 4200",
+    "build": "echo \"No build step for static version\"",
+    "watch": "echo \"No watch for static version\"",
+    "test": "echo \"No tests configured for static version\"",
     "serve:ssr:presentes-casamento": "node dist/presentes-casamento/server/server.mjs"
   },
   "prettier": {
@@ -33,6 +33,7 @@
     "@angular/router": "^20.3.0",
     "@angular/ssr": "^20.3.7",
     "express": "^5.1.0",
+    "firebase": "^12.5.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
