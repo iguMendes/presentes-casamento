@@ -1,6 +1,19 @@
 import { PRODUCT_LINKS } from "./productLinks.js";
 
-document.addEventListener('DOMContentLoaded', () => {
+const firebaseConfig = {
+  apiKey: "AIzaSyCs9LdN3M8Ey8ta5BroO9uL71CstOk2Mso",
+  authDomain: "presentes-16527.firebaseapp.com",
+  projectId: "presentes-16527",
+  storageBucket: "presentes-16527.appspot.com",
+  messagingSenderId: "972822375721",
+  appId: "1:972822375721:web:cd9c073c0310dc12d99b38"
+};
+
+// Inicializa o Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+document.addEventListener('DOMContentLoaded', async () => {
   const mainView = document.getElementById('mainView');
   const cadastroView = document.getElementById('cadastroView');
   const linkProduto = document.querySelector('.link-produto');
@@ -8,11 +21,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let presenteSelecionado = null;
 
-  // Inicializa flags para cada presente
+  // Inicializa flags de todos os presentes
   const presenteFlags = {};
   document.querySelectorAll('.container-presente').forEach(el => {
     presenteFlags[el.id] = true;
   });
+
+  // --- Busca presentes já escolhidos no Firebase ---
+  try {
+    const snapshot = await db.collection("presentes").get();
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      if (data.presenteId && presenteFlags[data.presenteId] !== undefined) {
+        presenteFlags[data.presenteId] = false; // Marca como já escolhido
+      }
+    });
+  } catch (error) {
+    console.error("Erro ao buscar presentes no Firebase:", error);
+  }
 
   function logPresenteFlags() {
     console.clear();
@@ -46,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mainView.style.display = 'block';
     presenteSelecionado = null;
 
-    // Atualiza visibilidade dos presentes sem resetar flags
+    // Mostra apenas presentes ativos
     Object.keys(presenteFlags).forEach(id => {
       const container = document.getElementById(id);
       if (container) {
@@ -66,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Clique nos botões de presentear
   document.body.addEventListener('click', (ev) => {
     const target = ev.target;
     if (!(target instanceof HTMLElement)) return;
@@ -78,19 +103,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Submit do formulário de cadastro
   formCadastro.addEventListener('submit', (ev) => {
     ev.preventDefault();
     if (!presenteSelecionado) return;
 
-    // Marca o presente como inativo
-    presenteFlags[presenteSelecionado] = false;
+    const nome = formCadastro.querySelector('input[placeholder="Nome"]').value;
+    const sobrenome = formCadastro.querySelector('input[placeholder="Sobrenome"]').value;
+    const telefone = formCadastro.querySelector('input[placeholder="Telefone"]').value;
 
-    formCadastro.reset();
-    showMain();
+    db.collection("presentes").add({
+      presenteId: presenteSelecionado,
+      nome,
+      sobrenome,
+      telefone,
+      data: new Date()
+    }).then(() => {
+      console.log("Presente salvo com sucesso!");
+      // Marca como escolhido e atualiza a tela
+      presenteFlags[presenteSelecionado] = false;
+      formCadastro.reset();
+      showMain();
+    }).catch((error) => {
+      console.error("Erro ao salvar no Firebase:", error);
+    });
   });
 
-  // Função global para reativar presente
   window.trazerPresente = (id) => {
     if (presenteFlags[id] !== undefined) {
       presenteFlags[id] = true;
@@ -98,15 +135,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Inicializa tela correta
-  if (location.hash === "#cadastro") {
-    const lastState = history.state;
-    if (lastState?.page === "cadastro" && lastState.id) {
-      showCadastro(lastState.id);
-    } else {
-      showMain();
-    }
-  } else {
-    showMain();
-  }
+  showMain();
 });

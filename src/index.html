@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="styles.css" />
   <title>PresentesCasamento</title>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 </head>
 
 <body>
@@ -466,9 +468,9 @@
     <div class="container-cadastro">
       <h2>Informe quem está presenteando</h2>
       <form class="form-cadastro">
-        <input type="text" placeholder="Nome" required>
-        <input type="text" placeholder="Sobrenome" required>
-        <input type="text" placeholder="Telefone" required>
+        <input type="text" name="nome" placeholder="Nome" required>
+        <input type="text" name="sobrenome" placeholder="Sobrenome" required>
+        <input type="text" name="telefone" placeholder="Telefone" required>
         <a class="link-produto" href="">Clique aqui para o link do Produto</a>
         <button type="submit">Presentear com este item</button>
       </form>
