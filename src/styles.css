@@ -208,6 +208,6 @@ button {
         display: grid;
         padding: 10px 250px 3px 270px;
         grid-template-columns: repeat(5, 1fr);
-        gap: 7px;
+        gap: 7px; 
     }
 }
