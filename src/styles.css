@@ -177,13 +177,13 @@ button {
 
     .presentes-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        grid-template-columns: repeat(1, 1fr) !important;
         gap: 12px;
     }
 
     .container-presente {
-        width: 100%;
         height: auto;
+        transform: translate(110px, 10px);
     }
 
     .img-tamanho {
@@ -194,6 +194,7 @@ button {
     .texto-presente {
         font-size: 14px;
         max-width: 130px;
+        padding-bottom: 10px;
     }
 
     .btn-presentear {
@@ -202,11 +203,11 @@ button {
     }
 }
 
-@media (max-width: 1026px) {
+@media (max-width: 1920px) {
     .presentes-grid {
-    display: grid;
-    padding: 10px 0px 0px 0px;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 7px;
-}
+        display: grid;
+        padding: 10px 250px 3px 270px;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 7px;
+    }
 }
