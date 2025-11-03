@@ -8,12 +8,16 @@
 
 html,
 body {
-    background-image: url('/assets/TELA1.png');
+    background-image: url('/TELA1.png');
     background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
     min-height: 100vh;
     font-family: 'Inter', sans-serif;
+}
+
+#cadastroView {
+    background-image: url('/TELA2.png');
 }
 
 .container {

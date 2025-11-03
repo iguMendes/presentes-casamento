@@ -64,10 +64,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       linkProduto.removeAttribute("target");
     }
 
-    history.replaceState({ page: "cadastro", id }, "", "#cadastro");
+    // Agora usamos pushState para permitir voltar
+    history.pushState({ page: "cadastro", id }, "", "#cadastro");
   }
 
-  function showMain() {
+  function showMain(push = true) {
     cadastroView.style.display = 'none';
     mainView.style.display = 'block';
     presenteSelecionado = null;
@@ -81,14 +82,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     logPresenteFlags();
-    history.replaceState({ page: "main" }, "", "#home");
+
+    // Atualiza histórico somente se push = true
+    if (push) history.pushState({ page: "main" }, "", "#home");
   }
 
+  // Ouve mudanças no botão voltar do navegador
   window.addEventListener('popstate', (event) => {
     if (event.state?.page === "cadastro" && event.state.id) {
       showCadastro(event.state.id);
     } else {
-      showMain();
+      showMain(false); // não push, apenas exibe
     }
   });
 
@@ -107,9 +111,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     ev.preventDefault();
     if (!presenteSelecionado) return;
 
-    const nome = formCadastro.querySelector('input[placeholder="Nome"]').value;
-    const sobrenome = formCadastro.querySelector('input[placeholder="Sobrenome"]').value;
-    const telefone = formCadastro.querySelector('input[placeholder="Telefone"]').value;
+    const nome = formCadastro.querySelector('input[name="nome"]').value;
+    const sobrenome = formCadastro.querySelector('input[name="sobrenome"]').value;
+    const telefone = formCadastro.querySelector('input[name="telefone"]').value;
 
     db.collection("presentes").add({
       presenteId: presenteSelecionado,
@@ -119,7 +123,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       data: new Date()
     }).then(() => {
       console.log("Presente salvo com sucesso!");
-      // Marca como escolhido e atualiza a tela
       presenteFlags[presenteSelecionado] = false;
       formCadastro.reset();
       showMain();
@@ -135,5 +138,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   };
 
-  showMain();
+  // Inicializa tela de acordo com o hash
+  if (location.hash === "#cadastro") {
+    const lastState = history.state;
+    if (lastState?.page === "cadastro" && lastState.id) {
+      showCadastro(lastState.id);
+    } else {
+      showMain(false);
+    }
+  } else {
+    showMain(false);
+  }
 });
