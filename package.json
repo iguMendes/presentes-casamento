@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "npx http-server ./src -p 4200",
+    "start": "npx http-server . -p 4200",
     "build": "echo \"No build step for static version\"",
     "watch": "echo \"No watch for static version\"",
     "test": "echo \"No tests configured for static version\"",
