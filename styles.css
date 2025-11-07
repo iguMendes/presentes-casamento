@@ -9,15 +9,22 @@
 html,
 body {
     background-image: url('./TELA1.png');
-    background-size: auto;
+    background-size: cover;
+    /* agora ocupa tudo */
     background-position: top center;
     background-repeat: no-repeat;
     min-height: 100vh;
     font-family: 'Inter', sans-serif;
 }
 
+/* Cadastro */
 #cadastroView {
+    display: none;
     background-image: url('./TELA2.png');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
 }
 
 .container {
@@ -44,11 +51,13 @@ body {
     padding-bottom: 40px;
 }
 
+/* GRID padrão (Full HD e maiores) */
 .presentes-grid {
     display: grid;
-    padding: 10px 72px 0px 72px;
     grid-template-columns: repeat(5, 1fr);
     gap: 7px;
+    padding: 10px 200px;
+    /* centralização sem deixar borda gigante */
 }
 
 .container-presente {
@@ -100,15 +109,6 @@ button {
 }
 
 /* Cadastro */
-#cadastroView {
-    display: none;
-    background-image: url('/assets/TELA2.png');
-    background-size: cover;
-    background-position: top center;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-}
-
 .container-cadastro {
     width: 357px;
     height: 467px;
@@ -141,10 +141,6 @@ button {
     font-size: 16px;
     width: 270px;
     align-self: center;
-
-    placeholder {
-        color: #dadada
-    }
 }
 
 .link-produto {
@@ -165,8 +161,23 @@ button {
     margin-top: 10px;
 }
 
-/* Responsivo */
+/* HD (1366px) */
+@media (max-width: 1366px) {
+    .presentes-grid {
+        padding: 10px 40px;
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+/* MOBILE */
 @media (max-width: 430px) {
+
+    html,
+    body {
+        background-size: contain;
+        background-position: 0px 120px;
+        background-repeat: no-repeat;
+    }
 
     #mainView .subtitulo {
         font-size: 77px;
@@ -179,16 +190,10 @@ button {
     }
 
     .presentes-grid {
-        display: grid;
-        grid-template-columns: repeat(1, 1fr) !important;
+        grid-template-columns: 1fr !important;
         gap: 12px;
-    }
-
-    .presentes-grid {
-        display: grid;
-        grid-template-columns: repeat(1, 1fr) !important;
-        gap: 12px;
-        transform: translate(77px, 10px) !important;
+        padding: 10px 20px;
+        justify-items: center;
     }
 
     .img-tamanho {
@@ -205,23 +210,5 @@ button {
     .btn-presentear {
         width: 120px;
         height: 30px;
-    }
-}
-
-@media (max-width: 1920px) {
-    .presentes-grid {
-        display: grid;
-        padding: 10px 250px 3px 270px;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 7px;
-    }
-}
-
-@media (max-width: 1366px) {
-    .presentes-grid {
-        display: grid;
-        padding: 10px 0px 0px 30px;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 7px;
     }
 }
