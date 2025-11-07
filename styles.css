@@ -175,8 +175,8 @@ button {
     html,
     body {
         background-size: contain;
-        background-position: 0px 120px;
-        background-repeat: no-repeat;
+        background-repeat: repeat;
+        background-position: top center;
     }
 
     #mainView .subtitulo {
@@ -187,6 +187,10 @@ button {
 
     .cha {
         font-size: 26px;
+    }
+
+    .bloco-nome {
+        padding-top: 17px;
     }
 
     .presentes-grid {
